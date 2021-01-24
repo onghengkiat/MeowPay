@@ -1,0 +1,13 @@
+----------------------------------------------------------------
+Wed Jan 20 19:25:14 MYT 2021:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance a816c00e-0177-1f8a-9e15-000001ca6728 
+on database directory memory:/home/user/IdeaProjects/MeowPay/b5589c6f-b6a1-4fe3-a235-d87495997b51 with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@659e0bfd 
+Loaded from file:/home/user/.m2/repository/org/apache/derby/derby/10.14.2.0/derby-10.14.2.0.jar
+java.vendor=Oracle Corporation
+java.runtime.version=15+36-1562
+user.dir=/home/user/IdeaProjects/MeowPay
+os.name=Linux
+os.arch=amd64
+os.version=5.8.0-36-generic
+derby.system.home=null
+Database Class Loader started - derby.database.classpath=''
