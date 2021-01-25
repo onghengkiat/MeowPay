@@ -12,7 +12,12 @@ public class TransactionController {
 
     @RequestMapping("/transaction")
     public String getAllTransaction(){
-        return transactionService.getTransaction().toString();
+        return transactionService.getAllTransaction();
+    }
+
+    @RequestMapping("/transaction/meow/{meow_id}")
+    public String getAllTransactionByMeowId(@PathVariable int meow_id){
+        return transactionService.getTransactionByMeow(meow_id);
     }
 
     @RequestMapping(value = "/transaction", method = RequestMethod.POST)
@@ -22,8 +27,13 @@ public class TransactionController {
     }
 
     @RequestMapping("/transaction/{id}")
-    public String getTransactionByID(@PathVariable String id){
+    public String getTransactionByID(@PathVariable int id){
         return transactionService.getTransactionByID(id).toString();
+    }
+
+    @RequestMapping("/transaction/{id}/update/{status}")
+    public String updateTransactionByID(@PathVariable int id, @PathVariable int status){
+        return transactionService.updateStatus(id, status);
     }
 
 }

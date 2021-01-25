@@ -5,9 +5,10 @@ import meowpay.restcontroller.claim.Claim;
 import meowpay.restcontroller.meow.Meow;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
-public class Entry {
+public class Entry implements Comparable<Entry>{
     @Id
     @SequenceGenerator(name = "entry_seq", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "entry_seq")
@@ -28,7 +29,15 @@ public class Entry {
     @NotNull
     private int amount;
 
+    @NotNull
+    private Date time;
+
     public Entry() {
+        this.time = new Date();
+    }
+
+    public Entry(int entry_id) {
+        this.entry_id = entry_id;
     }
 
     public int getEntry_id() {
@@ -63,10 +72,15 @@ public class Entry {
     public String toString() {
         return "Entry{" +
                 "entry_id=" + entry_id +
-                ", claim=" + claim +
-                ", creditor=" + creditor +
-                ", debitor=" + debitor +
+                ", claim=" + claim.getClaim_id() +
+                ", creditor=" + creditor.getMeow_id() +
+                ", debitor=" + debitor.getMeow_id() +
                 ", amount=" + amount +
                 '}';
+    }
+
+    @Override
+    public int compareTo(Entry o) {
+        return this.time.compareTo(o.time);
     }
 }

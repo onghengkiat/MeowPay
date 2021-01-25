@@ -10,8 +10,13 @@ public class CommentController {
     private CommentService commentService;
 
     @RequestMapping("/comment")
-    public String getAllCLaim(){
-        return commentService.getComment().toString();
+    public String getAllComment(){
+        return commentService.getComment();
+    }
+
+    @RequestMapping("/comment/entry/{entry_id}")
+    public String getAllCommentByEntry(@PathVariable int entry_id){
+        return commentService.getCommentByEntry(entry_id);
     }
 
     @RequestMapping(value = "/comment", method = RequestMethod.POST)
@@ -22,6 +27,6 @@ public class CommentController {
 
     @RequestMapping("/comment/{id}")
     public String getCommentByID(@PathVariable int id){
-        return commentService.getCommentByID(id).toString();
+        return commentService.getCommentByID(id);
     }
 }

@@ -22,7 +22,12 @@ public class Claim {
     @NotNull
     private int status;
 
+
     public Claim() {
+    }
+
+    public Claim(int claim_id) {
+        this.claim_id = claim_id;
     }
 
     public int getClaim_id() {
@@ -65,10 +70,10 @@ public class Claim {
     public String toString() {
         return "Claim{" +
                 "claim_id=" + claim_id +
-                ", meow=" + meow +
+                ", meow=" + meow.toString() +
                 ", description='" + description + '\'' +
                 ", total_amount=" + total_amount +
-                ", status=" + status +
+                ", status=" + (status == 1?"Processing":"Approved")+
                 '}';
     }
 }

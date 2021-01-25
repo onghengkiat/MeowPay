@@ -28,6 +28,7 @@ public class Transaction {
     @NotNull
     private int amount;
 
+    //1 stands for processing, 2 stands for approved
     @NotNull
     private int status;
 

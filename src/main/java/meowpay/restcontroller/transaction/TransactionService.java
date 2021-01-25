@@ -1,5 +1,6 @@
 package meowpay.restcontroller.transaction;
 
+import meowpay.restcontroller.meow.Meow;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,19 +15,36 @@ public class TransactionService {
     public TransactionService() {
     }
 
-    public Queue<Transaction> getTransaction(){
-        Queue<Transaction> list = new LinkedList<>();
+    public String getAllTransaction(){
+        List<Transaction> list = new LinkedList<>();
         for(Transaction transaction : transactionRepository.findAll()){
             list.add(transaction);
         }
-        return list;
+        return list.toString();
     }
 
-    public Transaction getTransactionByID(String id){
+
+    public String getTransactionByMeow(int meow_id){
+        List<Transaction> list = new LinkedList<>();
+        for(Transaction transaction : transactionRepository.findByCreditorOrDebitor(new Meow(meow_id), new Meow(meow_id))){
+            list.add(transaction);
+        }
+        return list.toString();
+    }
+
+
+    public Transaction getTransactionByID(int id){
         return transactionRepository.findById(id).get();
     }
 
     public void addTransaction(Transaction transaction){
         this.transactionRepository.save(transaction);
+    }
+
+    public String updateStatus(int id, int status){
+        Transaction transaction = this.getTransactionByID(id);
+        transaction.setStatus(status);
+        this.transactionRepository.save(transaction);
+        return "Updated successfully";
     }
 }
