@@ -20,27 +20,27 @@ public class ClaimService {
     }
 
 
-    public Queue<Claim> getClaim(){
-        Queue<Claim> list = new LinkedList<>();
+    public List<Claim> getClaim(){
+        List <Claim> list = new LinkedList<>();
         for(Claim claim : claimRepository.findAll()){
             list.add(claim);
         }
         return list;
     }
 
-    public String getClaimByMeow(int id){
+    public List<Claim> getClaimByMeow(int id){
         List<Claim> claims = new LinkedList<>();
         for (Claim claim : claimRepository.findByMeow(new Meow(id))){
             claims.add(claim);
         }
-        return "{claims:"+claims.toString() + "}";
+        return claims;
     }
 
     public Claim getClaimByID(int id){
         return claimRepository.findById(id).get();
     }
 
-    public void addClaim(Claim claim){
-        this.claimRepository.save(claim);
+    public Claim addClaim(Claim claim){
+        return this.claimRepository.save(claim);
     }
 }

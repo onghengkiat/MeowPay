@@ -4,6 +4,7 @@ import com.sun.istack.NotNull;
 import meowpay.restcontroller.meow.Meow;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 public class Credential {
@@ -17,7 +18,11 @@ public class Credential {
     @NotNull
     private String password;
 
+    @NotNull
+    private Date time;
+
     public Credential() {
+        this.time = new Date();
     }
 
     public String getUsername() {

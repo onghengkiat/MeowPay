@@ -7,11 +7,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class HomePageController {
+public class PageController {
 
     @RequestMapping("/")
     public String homePage(Model model){
         return "home";
+    }
+
+    @RequestMapping("/claim")
+    public String claimPage(Model model){
+        return "claim";
     }
 
     /*

@@ -1,13 +1,11 @@
 package meowpay.restcontroller.comment;
 
-import meowpay.restcontroller.entry.Entry;
+import meowpay.restcontroller.claim.Claim;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Queue;
-
 @Service
 public class CommentService {
     @Autowired
@@ -18,30 +16,30 @@ public class CommentService {
     }
 
 
-    public String getComment(){
+    public List<Comment> getComment(){
         List<Comment> list = new LinkedList<>();
         for(Comment comment : commentRepository.findAll()){
             list.add(comment);
         }
-        return list.toString();
+        return list;
     }
 
 
 
-    public String getCommentByID(int id){
-        return commentRepository.findById(id).get().toString();
+    public Comment getCommentByID(int id){
+        return commentRepository.findById(id).get();
     }
 
-    public void addComment(Comment comment){
-        this.commentRepository.save(comment);
+    public Comment addComment(Comment comment){
+        return this.commentRepository.save(comment);
     }
 
-    public String getCommentByEntry(int entry_id){
+    public List<Comment> getCommentByClaim(int claim_id){
         List<Comment> comments = new LinkedList<>();
 
-        for(Comment comment : commentRepository.findByEntry(new Entry(entry_id))){
+        for(Comment comment : commentRepository.findByClaim(new Claim(claim_id))){
             comments.add(comment);
         }
-        return comments.toString();
+        return comments;
     }
 }

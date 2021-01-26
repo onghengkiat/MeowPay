@@ -18,12 +18,12 @@ public class EntryService {
     }
 
 
-    public String getEntry(){
+    public List<Entry> getEntry(){
         List<Entry> list = new LinkedList<>();
         for(Entry entry : entryRepository.findAll()){
             list.add(entry);
         }
-        return list.toString();
+        return list;
     }
 
 
@@ -38,15 +38,15 @@ public class EntryService {
                 balance -= entry.getAmount();
             entries.add(entry);
         }
-        return "{entries:"+entries.toString() + ",balance:"+balance + "}";
+        return "{entries:"+entries + ",balance:"+balance + "}";
     }
 
-    public String getEntryByID(int id){
-        return entryRepository.findById(id).get().toString();
+    public Entry getEntryByID(int id){
+        return entryRepository.findById(id).get();
     }
 
-    public void addEntry(Entry entry){
-        this.entryRepository.save(entry);
+    public Entry addEntry(Entry entry){
+        return this.entryRepository.save(entry);
     }
 
 }

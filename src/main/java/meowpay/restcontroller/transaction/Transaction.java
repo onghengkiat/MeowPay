@@ -4,6 +4,7 @@ import com.sun.istack.NotNull;
 import meowpay.restcontroller.claim.Claim;
 import meowpay.restcontroller.meow.Meow;
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 public class Transaction {
@@ -32,7 +33,11 @@ public class Transaction {
     @NotNull
     private int status;
 
+    @NotNull
+    private Date time;
+
     public Transaction() {
+        this.time = new Date();
     }
 
     public int getTransaction_id() {

@@ -4,6 +4,7 @@ import com.sun.istack.NotNull;
 import meowpay.restcontroller.meow.Meow;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 public class Claim {
@@ -22,8 +23,11 @@ public class Claim {
     @NotNull
     private int status;
 
+    @NotNull
+    private Date time;
 
     public Claim() {
+        this.time = new Date();
     }
 
     public Claim(int claim_id) {
@@ -68,9 +72,9 @@ public class Claim {
 
     @Override
     public String toString() {
-        return "Claim{" +
+        return "{" +
                 "claim_id=" + claim_id +
-                ", meow=" + meow.toString() +
+                ", meow=" + meow.getMeow_id() +
                 ", description='" + description + '\'' +
                 ", total_amount=" + total_amount +
                 ", status=" + (status == 1?"Processing":"Approved")+

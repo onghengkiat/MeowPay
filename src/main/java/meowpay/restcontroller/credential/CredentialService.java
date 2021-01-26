@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.LinkedList;
-import java.util.Queue;
+import java.util.List;
 
 @Service
 public class CredentialService {
@@ -15,8 +15,8 @@ public class CredentialService {
     public CredentialService() {
     }
 
-    public Queue<Credential> getCredential(){
-        Queue<Credential> list = new LinkedList<>();
+    public List<Credential> getCredential(){
+        List<Credential> list = new LinkedList<>();
         for(Credential credential : credentialRepository.findAll()){
             list.add(credential);
         }
@@ -27,8 +27,16 @@ public class CredentialService {
         return credentialRepository.findById(id).get();
     }
 
-    public void addCredential(Credential credential){
-        this.credentialRepository.save(credential);
+    public Credential addCredential(Credential credential){
+        return this.credentialRepository.save(credential);
     }
 
+    public boolean authenticateCredential(Credential credential){
+        Credential credential_in_db = getCredentialByID(credential.getUsername());
+        if(credential_in_db.getPassword().equals(credential.getPassword())){
+            return true;
+        }else{
+            return false;
+        }
+    }
 }

@@ -3,6 +3,7 @@ package meowpay.restcontroller.meow;
 import com.sun.istack.NotNull;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 public class Meow {
@@ -17,8 +18,10 @@ public class Meow {
     @NotNull
     private int balance;
 
+    @NotNull
+    private Date time;
     public Meow(){
-
+        this.time = new Date();
     }
 
     public Meow(int meow_id){

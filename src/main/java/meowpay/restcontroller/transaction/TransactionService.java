@@ -15,21 +15,21 @@ public class TransactionService {
     public TransactionService() {
     }
 
-    public String getAllTransaction(){
+    public List<Transaction> getAllTransaction(){
         List<Transaction> list = new LinkedList<>();
         for(Transaction transaction : transactionRepository.findAll()){
             list.add(transaction);
         }
-        return list.toString();
+        return list;
     }
 
 
-    public String getTransactionByMeow(int meow_id){
+    public List<Transaction> getTransactionByMeow(int meow_id){
         List<Transaction> list = new LinkedList<>();
         for(Transaction transaction : transactionRepository.findByCreditorOrDebitor(new Meow(meow_id), new Meow(meow_id))){
             list.add(transaction);
         }
-        return list.toString();
+        return list;
     }
 
 
@@ -37,14 +37,13 @@ public class TransactionService {
         return transactionRepository.findById(id).get();
     }
 
-    public void addTransaction(Transaction transaction){
-        this.transactionRepository.save(transaction);
+    public Transaction addTransaction(Transaction transaction){
+        return this.transactionRepository.save(transaction);
     }
 
-    public String updateStatus(int id, int status){
+    public Transaction updateStatus(int id, int status){
         Transaction transaction = this.getTransactionByID(id);
         transaction.setStatus(status);
-        this.transactionRepository.save(transaction);
-        return "Updated successfully";
+        return this.transactionRepository.save(transaction);
     }
 }

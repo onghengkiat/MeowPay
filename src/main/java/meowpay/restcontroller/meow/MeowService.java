@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.LinkedList;
-import java.util.Queue;
+import java.util.List;
 
 @Service
 public class MeowService {
@@ -14,8 +14,8 @@ public class MeowService {
     public MeowService() {
     }
 
-    public Queue<Meow> getMeow(){
-        Queue<Meow> list = new LinkedList<>();
+    public List<Meow> getMeow(){
+        List<Meow> list = new LinkedList<>();
         for(Meow meow : meowRepository.findAll()){
             list.add(meow);
         }
@@ -26,7 +26,7 @@ public class MeowService {
         return meowRepository.findById(id).get();
     }
 
-    public void addMeow(Meow meow){
-        this.meowRepository.save(meow);
+    public Meow addMeow(Meow meow){
+        return this.meowRepository.save(meow);
     }
 }

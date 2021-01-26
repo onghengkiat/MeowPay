@@ -16,6 +16,7 @@
 
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 </head>
 <body>
@@ -46,5 +47,49 @@
     </div>
 
 </nav>
+<table id="claims">
+<tr>
+    <th>Claim ID</th>
+    <th>Meow ID</th>
+    <th>Description</th>
+    <th>Total Amount</th>
+    <th>Status</th>
+</tr>
+</table>
+
 </body>
+
+<script language="javascript" type="text/javascript">
+    $(document).ready(function(){
+        $.ajax({
+            url: '/api/claim',
+            type: 'get',
+            dataType: 'json',
+            success: function(response){
+
+                var len = response.length;
+                console.log(response);
+                for(var i=0; i<len; i++){
+                    console.log(response[i]);
+                    var claim_id = response[i].claim_id;
+                    var meow = response[i].meow;
+                    var description = response[i].description;
+                    var total_amount = response[i].total_amount;
+                    var status = response[i].status;
+
+                    var tr_str = "<tr>" +
+                        "<td align='center'>" + claim_id + "</td>" +
+                        "<td align='center'>" + meow.meow_id + "</td>" +
+                        "<td align='center'>" + description + "</td>" +
+                        "<td align='center'>" + total_amount + "</td>" +
+                        "<td align='center'>" + status + "</td>" +
+                        "</tr>";
+
+                    $("#claims").append(tr_str);
+                }
+
+            }
+        });
+    });
+</script>
 </html>

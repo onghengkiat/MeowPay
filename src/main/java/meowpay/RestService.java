@@ -34,7 +34,7 @@ public class RestService {
         // build the request
         HttpEntity<Map<String, Object>> entity = new HttpEntity<>(map, headers);
         // send POST request
-        ResponseEntity<? extends Object> response = this.restTemplate.postForEntity(url, entity, entity_class);
+        ResponseEntity<? extends Object> response = this.restTemplate.postForEntity(url, entity, String.class);
 
         // check response status code
         if (response.getStatusCode() == HttpStatus.CREATED) {
