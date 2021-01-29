@@ -11,6 +11,8 @@ import java.util.List;
 public class ClaimController {
     @Autowired
     private ClaimService claimService;
+    @Autowired
+    private EntryService entryService;
 
     @RequestMapping("/claim")
     public ResponseEntity<List<Claim>> getAllCLaim(){
@@ -23,6 +25,11 @@ public class ClaimController {
         return ResponseEntity.ok(claimService.getClaimByMeow(meow_id));
     }
 
+    @RequestMapping("/claim/entry/{claim_id}")
+    public ResponseEntity<List<Entry>> getAllEntryByClaimId(@PathVariable int claim_id){
+        return ResponseEntity.ok(entryService.getEntryByClaim(claim_id));
+    }
+
     @RequestMapping(value = "/claim", method = RequestMethod.POST)
     public ResponseEntity<Claim> addClaim(@RequestBody Claim claim){
         return ResponseEntity.ok(claimService.addClaim(claim));
@@ -32,6 +39,11 @@ public class ClaimController {
     @RequestMapping("/claim/{id}")
     public ResponseEntity<Claim> getClaimByID(@PathVariable int id){
         return ResponseEntity.ok(claimService.getClaimByID(id));
+    }
+
+    @RequestMapping("/claim/balance")
+    public ResponseEntity<Claim> balanceClaims(){
+        return ResponseEntity.ok(claimService.balance());
     }
 
 }

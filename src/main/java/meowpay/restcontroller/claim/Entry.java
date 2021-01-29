@@ -1,7 +1,6 @@
-package meowpay.restcontroller.entry;
+package meowpay.restcontroller.claim;
 
 import com.sun.istack.NotNull;
-import meowpay.restcontroller.claim.Claim;
 import meowpay.restcontroller.meow.Meow;
 
 import javax.persistence.*;
@@ -38,6 +37,14 @@ public class Entry implements Comparable<Entry>{
 
     public Entry(int entry_id) {
         this.entry_id = entry_id;
+    }
+
+    public Entry(Claim claim, Meow creditor, Meow debitor, int amount) {
+        this.claim = claim;
+        this.creditor = creditor;
+        this.debitor = debitor;
+        this.amount = amount;
+        this.time = new Date();
     }
 
     public int getEntry_id() {

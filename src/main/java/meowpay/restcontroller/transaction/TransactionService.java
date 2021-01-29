@@ -37,10 +37,6 @@ public class TransactionService {
         return transactionRepository.findById(id).get();
     }
 
-    public Transaction addTransaction(Transaction transaction){
-        return this.transactionRepository.save(transaction);
-    }
-
     public Transaction updateStatus(int id, int status){
         Transaction transaction = this.getTransactionByID(id);
         transaction.setStatus(status);

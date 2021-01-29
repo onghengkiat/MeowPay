@@ -1,4 +1,4 @@
-package meowpay.restcontroller.entry;
+package meowpay.restcontroller.claim;
 
 import meowpay.restcontroller.meow.Meow;
 import org.springframework.data.repository.CrudRepository;
@@ -9,4 +9,5 @@ import java.util.List;
 @Repository
 public interface EntryRepository extends CrudRepository<Entry, Integer> {
     List<Entry> findByCreditorOrDebitor(Meow meow1,Meow meow2);
+    List<Entry> findByClaim(Claim claim);
 }

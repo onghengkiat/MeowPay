@@ -1,4 +1,4 @@
-package meowpay.restcontroller.entry;
+package meowpay.restcontroller.claim;
 
 import meowpay.restcontroller.meow.Meow;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,19 +17,8 @@ public class EntryService {
 
     }
 
-
-    public List<Entry> getEntry(){
-        List<Entry> list = new LinkedList<>();
-        for(Entry entry : entryRepository.findAll()){
-            list.add(entry);
-        }
-        return list;
-    }
-
-
     public String getEntryByMeow(int id){
         List <Entry> entries = new LinkedList<>();
-        Collections.sort(entries);
         int balance = 0;
         for (Entry entry : entryRepository.findByCreditorOrDebitor(new Meow(id), new Meow(id))){
             if(entry.getCreditor().getMeow_id() == id)
@@ -40,13 +29,13 @@ public class EntryService {
         }
         return "{entries:"+entries + ",balance:"+balance + "}";
     }
-
-    public Entry getEntryByID(int id){
-        return entryRepository.findById(id).get();
+    public List<Entry> getEntryByClaim(int id){
+        List <Entry> entries = new LinkedList<>();
+        for (Entry entry : entryRepository.findByClaim(new Claim(id))){
+            entries.add(entry);
+        }
+        return entries;
     }
 
-    public Entry addEntry(Entry entry){
-        return this.entryRepository.save(entry);
-    }
 
 }

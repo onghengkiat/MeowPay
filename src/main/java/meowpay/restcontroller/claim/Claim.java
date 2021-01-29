@@ -34,6 +34,14 @@ public class Claim {
         this.claim_id = claim_id;
     }
 
+    public Claim(Meow meow, String description, int total_amount, int status) {
+        this.meow = meow;
+        this.description = description;
+        this.total_amount = total_amount;
+        this.status = status;
+        this.time = new Date();
+    }
+
     public int getClaim_id() {
         return claim_id;
     }

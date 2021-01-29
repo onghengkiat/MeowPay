@@ -1,5 +1,6 @@
 package meowpay.restcontroller.meow;
 
+import meowpay.restcontroller.credential.Credential;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,9 +18,9 @@ public class MeowController {
         return ResponseEntity.ok(meowService.getMeow());
     }
 
-    @RequestMapping(value = "/meow", method = RequestMethod.POST)
-    public ResponseEntity<Meow> addMeow(@RequestBody Meow meow){
-        return ResponseEntity.ok(meowService.addMeow(meow));
+    @RequestMapping(value = "/meow/register", method = RequestMethod.POST)
+    public ResponseEntity<Meow> addMeow(@RequestBody RequestWrapper requestWrapper){
+        return ResponseEntity.ok(meowService.addMeow(requestWrapper.getMeow(),requestWrapper.getCredential()));
     }
 
     @RequestMapping("/meow/{id}")

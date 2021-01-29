@@ -17,9 +17,11 @@ public class Meow {
     private String phone;
     @NotNull
     private int balance;
-
+    @NotNull
+    private String role;
     @NotNull
     private Date time;
+
     public Meow(){
         this.time = new Date();
     }
@@ -60,13 +62,19 @@ public class Meow {
         this.balance = balance;
     }
 
-    @Override
-    public String toString() {
-        return "Meow{" +
-                "meow_id=" + meow_id +
-                ", name='" + name + '\'' +
-                ", phone='" + phone + '\'' +
-                ", balance=" + balance +
-                '}';
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public Date getTime() {
+        return time;
+    }
+
+    public void setTime(Date time) {
+        this.time = time;
     }
 }

@@ -24,10 +24,6 @@ public class TransactionController {
         return ResponseEntity.ok(transactionService.getTransactionByMeow(meow_id));
     }
 
-    @RequestMapping(value = "/transaction", method = RequestMethod.POST)
-    public ResponseEntity<Transaction> addTransaction(@RequestBody Transaction transaction){
-        return ResponseEntity.ok(transactionService.addTransaction(transaction));
-    }
 
     @RequestMapping("/transaction/{id}")
     public ResponseEntity<Transaction> getTransactionByID(@PathVariable int id){

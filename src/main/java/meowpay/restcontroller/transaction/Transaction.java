@@ -29,7 +29,7 @@ public class Transaction {
     @NotNull
     private int amount;
 
-    //1 stands for processing, 2 stands for approved
+    //1 stands for awaiting, 2 stands for processing, 3 stands for approved
     @NotNull
     private int status;
 
@@ -37,6 +37,15 @@ public class Transaction {
     private Date time;
 
     public Transaction() {
+        this.time = new Date();
+    }
+
+    public Transaction(Claim claim, Meow creditor, Meow debitor, int amount, int status) {
+        this.claim = claim;
+        this.creditor = creditor;
+        this.debitor = debitor;
+        this.amount = amount;
+        this.status = status;
         this.time = new Date();
     }
 

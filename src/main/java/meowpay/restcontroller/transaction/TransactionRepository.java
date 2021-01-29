@@ -1,6 +1,5 @@
 package meowpay.restcontroller.transaction;
 
-import meowpay.restcontroller.entry.Entry;
 import meowpay.restcontroller.meow.Meow;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;

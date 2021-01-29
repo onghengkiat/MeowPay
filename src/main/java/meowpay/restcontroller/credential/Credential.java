@@ -19,6 +19,9 @@ public class Credential {
     private String password;
 
     @NotNull
+    private String role;
+
+    @NotNull
     private Date time;
 
     public Credential() {
@@ -43,6 +46,26 @@ public class Credential {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public void setMeow(Meow meow) {
+        this.meow = meow;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public Date getTime() {
+        return time;
+    }
+
+    public void setTime(Date time) {
+        this.time = time;
     }
 
     @Override
