@@ -78,6 +78,18 @@ public class Claim {
         this.status = status;
     }
 
+    public void setMeow(Meow meow) {
+        this.meow = meow;
+    }
+
+    public Date getTime() {
+        return time;
+    }
+
+    public void setTime(Date time) {
+        this.time = time;
+    }
+
     @Override
     public String toString() {
         return "{" +
@@ -86,6 +98,7 @@ public class Claim {
                 ", description='" + description + '\'' +
                 ", total_amount=" + total_amount +
                 ", status=" + (status == 1?"Processing":"Approved")+
+                ", time=" + time+
                 '}';
     }
 }

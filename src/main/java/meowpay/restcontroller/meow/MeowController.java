@@ -19,8 +19,12 @@ public class MeowController {
     }
 
     @RequestMapping(value = "/meow/register", method = RequestMethod.POST)
-    public ResponseEntity<Meow> addMeow(@RequestBody RequestWrapper requestWrapper){
-        return ResponseEntity.ok(meowService.addMeow(requestWrapper.getMeow(),requestWrapper.getCredential()));
+    public ResponseEntity<?> addMeow(@RequestBody RequestWrapper requestWrapper){
+        Meow meow = meowService.addMeow(requestWrapper.getMeow(),requestWrapper.getCredential());
+        if(meow == null){
+            return ResponseEntity.badRequest().body("Username already exists");
+        }
+        return ResponseEntity.ok(meow);
     }
 
     @RequestMapping("/meow/{id}")

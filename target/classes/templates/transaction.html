@@ -37,8 +37,7 @@
                 <div class="dropdown-menu">
                     <a class="dropdown-item" href="/claim">Claims</a>
                     <a class="dropdown-item" href="/transaction">Transactions</a>
-                    <a class="dropdown-item" href="/">Profile</a>
-                    <a class="dropdown-item" href="/">Settings</a>
+                    <a class="dropdown-item" href="/profile">Profile</a>
                     <a class="dropdown-item" href="/">Log out</a>
                 </div>
             </li>
@@ -47,4 +46,56 @@
 
 </nav>
 </body>
+<table id="transactions">
+    <tr>
+        <th>Transaction ID</th>
+        <th>Claim ID</th>
+        <th>Creditor ID</th>
+        <th>Debitor ID</th>
+        <th>Total Amount</th>
+        <th>Status</th>
+        <th>Time</th>
+    </tr>
+</table>
+
+</body>
+
+<script language="javascript" type="text/javascript">
+    $(document).ready(function(){
+        $.ajax({
+            url: '/api/transaction',
+            type: 'get',
+            dataType: 'json',
+            success: function(response){
+
+                var len = response.length;
+                for(var i=0; i<len; i++){
+                    var transaction_id = response[i].transaction_id;
+                    var claim = response[i].claim;
+                    var creditor = response[i].creditor;
+                    var debitor = response[i].debitor;
+                    var amount = response[i].amount;
+                    var status = response[i].status;
+                    var time = response[i].time;
+
+                    var tr_str = "<tr>" +
+                        "<td align='center'>" + transaction_id + "</td>" +
+                        "<td align='center'>" + claim.claim_id + "</td>" +
+                        "<td align='center'>" + creditor.meow_id + "</td>" +
+                        "<td align='center'>" + debitor.meow_id + "</td>" +
+                        "<td align='center'>" + amount + "</td>" +
+                        "<td align='center'>" + status + "</td>" +
+                        "<td align='center'>" + time.toString() + "</td>" +
+                        "</tr>";
+
+                    $("#transactions").append(tr_str);
+                }
+
+            }
+        });
+    });
+</script>
 </html>
+
+
+

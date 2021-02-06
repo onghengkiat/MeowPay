@@ -89,6 +89,22 @@ public class Transaction {
         this.status = status;
     }
 
+    public void setCreditor(Meow creditor) {
+        this.creditor = creditor;
+    }
+
+    public void setDebitor(Meow debitor) {
+        this.debitor = debitor;
+    }
+
+    public Date getTime() {
+        return time;
+    }
+
+    public void setTime(Date time) {
+        this.time = time;
+    }
+
     @Override
     public String toString() {
         return "Transaction{" +

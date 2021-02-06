@@ -36,11 +36,17 @@ public class MeowService {
     }
 
     public Meow addMeow(Meow meow, Credential credential){
-        Meow meow_in_db = this.meowRepository.save(meow);
-        String pw_hash = BCrypt.hashpw(credential.getPassword(), BCrypt.gensalt());
-        credential.setPassword(pw_hash);
-        credential.setMeow(meow_in_db);
-        this.credentialRepository.save(credential);
-        return meow;
+        try{
+            credentialRepository.findById(credential.getUsername()).get();
+            return null;
+        }catch (Exception e){
+            Meow meow_in_db = this.meowRepository.save(meow);
+            String pw_hash = BCrypt.hashpw(credential.getPassword(), BCrypt.gensalt());
+            credential.setPassword(pw_hash);
+            credential.setMeow(meow_in_db);
+            this.credentialRepository.save(credential);
+            return meow;
+        }
+
     }
 }

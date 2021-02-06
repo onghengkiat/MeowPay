@@ -35,11 +35,10 @@
             <li class="dropdown active">
                 <img class="nav-link dropdown-toggle" id="navbardrop" data-toggle="dropdown" alt="@onghengkiat" width="40" height="40" src="https://avatars3.githubusercontent.com/u/55527104?s=60&amp;v=4">
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" href="/login">Login</a>
                     <a class="dropdown-item" href="/claim/">Claims</a>
                     <a class="dropdown-item" href="/transaction/">Transactions</a>
                     <a class="dropdown-item" href="/profile/">Profile</a>
-                    <a class="dropdown-item" href="/logout">Log out</a>
+                    <a class="dropdown-item" href="/">Log out</a>
                 </div>
             </li>
         </ul>
@@ -47,4 +46,47 @@
 
 </nav>
 </body>
+<h1 id="name"></h1>
+<h1 id="phone"></h1>
+<h1 id="role"></h1>
+<button type="button" onclick="changePassword()">
+    Change Password
+</button>
+</body>
+
+<script language="javascript" type="text/javascript">
+    $(document).ready(function(){
+        $.ajax({
+            url: '/api/meow/5',
+            type: 'get',
+            dataType: 'json',
+            success: function(response){
+
+                var name = response.name;
+                var phone = response.phone;
+                var role = response.role;
+
+                $("#name").append(name);
+                $("#phone").append(phone);
+                $("#role").append(role);
+            }
+        });
+    });
+
+    function changePassword(){
+         $.ajax({
+                url: '/api/credential/change/password/',
+                type: 'post',
+                contentType : "application/json",
+                dataType: 'text',
+                data:JSON.stringify({
+                    "oldPassword":"meowmeow",
+                    "newPassword":"onghengkiat"
+                })
+        });
+    }
+</script>
 </html>
+
+
+

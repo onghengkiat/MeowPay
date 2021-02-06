@@ -36,10 +36,9 @@
             <li class="dropdown active">
                 <img class="nav-link dropdown-toggle" id="navbardrop" data-toggle="dropdown" alt="@onghengkiat" width="40" height="40" src="https://avatars3.githubusercontent.com/u/55527104?s=60&amp;v=4">
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" href="/claim">Claims</a>
-                    <a class="dropdown-item" href="/transaction">Transactions</a>
-                    <a class="dropdown-item" href="/">Profile</a>
-                    <a class="dropdown-item" href="/">Settings</a>
+                    <a class="dropdown-item" href="/claim/">Claims</a>
+                    <a class="dropdown-item" href="/transaction/">Transactions</a>
+                    <a class="dropdown-item" href="/profile/">Profile</a>
                     <a class="dropdown-item" href="/">Log out</a>
                 </div>
             </li>
@@ -54,6 +53,7 @@
     <th>Description</th>
     <th>Total Amount</th>
     <th>Status</th>
+    <th>Time</th>
 </tr>
 </table>
 
@@ -76,6 +76,7 @@
                     var description = response[i].description;
                     var total_amount = response[i].total_amount;
                     var status = response[i].status;
+                    var time = response[i].time;
 
                     var tr_str = "<tr>" +
                         "<td align='center'>" + claim_id + "</td>" +
@@ -83,6 +84,7 @@
                         "<td align='center'>" + description + "</td>" +
                         "<td align='center'>" + total_amount + "</td>" +
                         "<td align='center'>" + status + "</td>" +
+                        "<td align='center'>" + time.toString() + "</td>" +
                         "</tr>";
 
                     $("#claims").append(tr_str);

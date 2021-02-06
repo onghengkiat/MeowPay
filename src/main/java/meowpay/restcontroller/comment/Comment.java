@@ -64,6 +64,14 @@ public class Comment {
         this.comment = comment;
     }
 
+    public void setClaim(Claim claim) {
+        this.claim = claim;
+    }
+
+    public void setMeow(Meow meow) {
+        this.meow = meow;
+    }
+
     @Override
     public String toString() {
         return "Comment{" +

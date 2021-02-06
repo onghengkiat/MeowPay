@@ -15,7 +15,7 @@ public class ClaimController {
     private EntryService entryService;
 
     @RequestMapping("/claim")
-    public ResponseEntity<List<Claim>> getAllCLaim(){
+    public ResponseEntity<List<Claim>> getAllClaim(){
         return ResponseEntity.ok(claimService.getClaim());
     }
 

@@ -2,6 +2,7 @@ package meowpay;
 
 import meowpay.restcontroller.credential.CredentialService;
 import org.springframework.context.annotation.Bean;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -29,17 +30,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
+        http.csrf().disable()
+                .authorizeRequests()
                 .antMatchers("/","/api/meow/register").permitAll()
                 .antMatchers("/api/claim/balance").hasRole("CentralMeow")
-                .antMatchers("/*").rememberMe()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
-                .and()
-                .logout().permitAll().logoutSuccessUrl("/")
-                .and()
-                .exceptionHandling().accessDeniedPage("/403");
+                //.loginPage("/login").permitAll()
+                .and().logout().permitAll().logoutSuccessUrl("/")
+                .and().exceptionHandling().accessDeniedPage("/accessdenied");
     }
 
 }

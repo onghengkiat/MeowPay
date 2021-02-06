@@ -3,7 +3,6 @@ package meowpay;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -17,6 +16,18 @@ public class PageController {
     @RequestMapping("/claim")
     public String claimPage(Model model){
         return "claim";
+    }
+
+
+    @RequestMapping("/transaction")
+    public String transactionPage(Model model){
+        return "transaction";
+    }
+
+
+    @RequestMapping("/profile")
+    public String profilePage(Model model){
+        return "profile";
     }
 
     /*
